@@ -9,12 +9,14 @@
    Después de las rayas empieza el HTML normal.
    ===================================================== */
 import "../styles/global.css";
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Tu web se publica en /portfolio-astro/ (ver "base" en astro.config.mjs).
+// Esta función añade ese prefijo a las rutas de las imágenes para que se encuentren.
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const ruta = (camino) => base + camino;
 
 // ---------- 1. TUS DATOS ----------
 const nombre = "Aurora Mañé";
-const titular = "Desarrollo webs sencillas y cuidadas. También dibujo.";
 const intro =
   "Estudio desarrollo web y también dibujo. Me gusta que lo que construyo funcione bien y se entienda a la primera.";
 const email = "tu@email.com";
@@ -40,13 +42,13 @@ const menu = [
 
 // Tus imágenes están en la carpeta public/img/.
 // Cuando pongas las tuyas, cambia el nombre (y .svg por .jpg si hace falta).
-const foto = "/img/foto.svg";
+const foto = ruta("/img/foto.svg");
 
 const proyectos = [
   {
     nombre: "Proyecto uno",
     fecha: "Mayo de 2026",
-    img: "/img/proyecto-1.svg",
+    img: ruta("/img/proyecto-1.svg"),
     alt: "Captura del proyecto uno",
     texto: "Una frase sobre qué hace y qué problema resuelve.",
     tecnologias: "Astro, Tailwind",
@@ -56,7 +58,7 @@ const proyectos = [
   {
     nombre: "Proyecto dos",
     fecha: "Abril de 2026",
-    img: "/img/proyecto-2.svg",
+    img: ruta("/img/proyecto-2.svg"),
     alt: "Captura del proyecto dos",
     texto: "Una frase sobre qué hace y qué problema resuelve.",
     tecnologias: "JavaScript, HTML, CSS",
@@ -67,22 +69,22 @@ const proyectos = [
 
 const dibujos = [
   {
-    img: "/img/dibujo-1.svg",
+    img: ruta("/img/dibujo-1.svg"),
     alt: "Descripción del dibujo 1",
     titulo: "Dibujo 1",
   },
   {
-    img: "/img/dibujo-2.svg",
+    img: ruta("/img/dibujo-2.svg"),
     alt: "Descripción del dibujo 2",
     titulo: "Dibujo 2",
   },
   {
-    img: "/img/dibujo-3.svg",
+    img: ruta("/img/dibujo-3.svg"),
     alt: "Descripción del dibujo 3",
     titulo: "Dibujo 3",
   },
   {
-    img: "/img/dibujo-4.svg",
+    img: ruta("/img/dibujo-4.svg"),
     alt: "Descripción del dibujo 4",
     titulo: "Dibujo 4",
   },
@@ -90,21 +92,21 @@ const dibujos = [
 
 const certificados = [
   {
-    img: "/img/cert-1.svg",
+    img: ruta("/img/cert-1.svg"),
     alt: "Certificado de JavaScript",
     titulo: "Curso de JavaScript",
     entidad: "Nombre de la entidad",
     anio: "2026",
   },
   {
-    img: "/img/cert-2.svg",
+    img: ruta("/img/cert-2.svg"),
     alt: "Certificado de HTML y CSS",
     titulo: "HTML y CSS",
     entidad: "Nombre de la entidad",
     anio: "2025",
   },
   {
-    img: "/img/cert-3.svg",
+    img: ruta("/img/cert-3.svg"),
     alt: "Certificado de inglés",
     titulo: "Inglés B1",
     entidad: "Nombre de la entidad",
@@ -118,7 +120,7 @@ const logros = [
     anio: "2026",
     titulo: "Primer premio en el concurso del centro",
     texto: "Una frase sobre qué hiciste.",
-    img: "/img/logro-1.svg",
+    img: ruta("/img/logro-1.svg"),
     alt: "Foto de la entrega del premio",
   },
   {
@@ -129,46 +131,53 @@ const logros = [
 ];
 ---
 
-<!-- ---------- 2. EL HTML ---------- --><!doctype html>
+<!-- ---------- 2. EL HTML ---------- -->
+<!doctype html>
 <html lang="es">
-  <header class="flex flex-wrap items-center justify-between gap-6 py-8">
-    <a href="#" class="font-semibold">{nombre}</a>
-    <nav class="flex flex-wrap gap-x-6 gap-y-3">
-      {
-        menu.map((m) => (
-          <a href={m.href} class="block leading-tight">
-            <span class="block text-sm font-medium">{m.titulo}</span>
-            <span class="muted hidden text-xs md:block">{m.texto}</span>
-          </a>
-        ))
-      }
-    </nav>
-    <div class="flex items-center gap-3">
-      <button
-        id="boton-tema"
-        type="button"
-        class="line muted rounded-full border px-3 text-sm"></button>
-      <a class="boton" href={`mailto:${email}?subject=${asunto}`}>Escríbeme</a>
-    </div>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{nombre} | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      // Aplica el tema guardado antes de mostrar la página, para que no parpadee
+      try {
+        const t = localStorage.getItem("tema");
+        if (t) document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
 
   <body>
     <div class="mx-auto max-w-5xl px-6">
-      <!-- Cabecera: nombre, menú y botón de tema -->
-      <header class="flex flex-wrap items-center justify-between gap-4 py-8">
+      <!-- Cabecera: nombre, menú, botón de tema y botón de contacto -->
+      <header
+        class="flex flex-wrap items-center justify-between gap-6 py-8"
+      >
         <a href="#" class="font-semibold">{nombre}</a>
-        <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
-          <nav class="muted flex flex-wrap gap-x-5 text-sm">
-            <a href="#proyectos">Proyectos</a>
-            <a href="#dibujos">Dibujos</a>
-            <a href="#certificados">Certificados</a>
-            <a href="#logros">Logros</a>
-            <a href="#contacto">Contacto</a>
-          </nav>
+        <nav class="flex flex-wrap gap-x-6 gap-y-3">
+          {
+            menu.map((m) => (
+              <a href={m.href} class="block leading-tight">
+                <span class="block text-sm font-medium">{m.titulo}</span>
+                <span class="muted hidden text-xs md:block">{m.texto}</span>
+              </a>
+            ))
+          }
+        </nav>
+        <div class="flex items-center gap-3">
           <button
             id="boton-tema"
             type="button"
             class="line muted rounded-full border px-3 text-sm"></button>
+          <a class="boton" href={`mailto:${email}?subject=${asunto}`}
+            >Escríbeme</a
+          >
         </div>
       </header>
 
@@ -184,8 +193,9 @@ const logros = [
                 Hola, soy {primerNombre}.
               </h1>
               <p class="mt-6 text-lg md:text-xl">{intro}</p>
-              <a class="boton mt-8" href={`mailto:${email}?subject=${asunto}`}
-                >Escríbeme</a
+              <a
+                class="boton mt-8"
+                href={`mailto:${email}?subject=${asunto}`}>Escríbeme</a
               >
             </div>
             <img
@@ -197,39 +207,44 @@ const logros = [
         </section>
 
         <!-- Proyectos: .map() crea una tarjeta por cada proyecto de la lista -->
-        {
-          proyectos.map((p) => (
-            <article
-              class="line overflow-hidden rounded-2xl border"
-              style="background: var(--card)"
-            >
-              <img
-                src={p.img}
-                alt={p.alt}
-                loading="lazy"
-                class="aspect-[16/9] w-full object-cover"
-              />
-              <div class="p-6">
-                <p class="muted text-sm">{p.fecha}</p>
-                <h3 class="mt-1 text-xl font-semibold">{p.nombre}</h3>
-                <p class="mt-2">{p.texto}</p>
-                <p class="muted mt-2 text-sm">{p.tecnologias}</p>
-                <p class="mt-4 flex gap-5 text-sm">
-                  <a class="link" href={p.demo}>
-                    Ver demo
-                  </a>
-                  <a class="link" href={p.codigo}>
-                    Ver código
-                  </a>
-                </p>
-              </div>
-            </article>
-          ))
-        }
+        <section id="proyectos" class="line scroll-mt-4 border-t py-24">
+          <h2 class="text-3xl font-semibold md:text-4xl">Proyectos</h2>
+          <div class="mt-8 grid gap-6 md:grid-cols-2">
+            {
+              proyectos.map((p) => (
+                <article
+                  class="line overflow-hidden rounded-2xl border"
+                  style="background: var(--card)"
+                >
+                  <img
+                    src={p.img}
+                    alt={p.alt}
+                    loading="lazy"
+                    class="aspect-[16/9] w-full object-cover"
+                  />
+                  <div class="p-6">
+                    <p class="muted text-sm">{p.fecha}</p>
+                    <h3 class="mt-1 text-xl font-semibold">{p.nombre}</h3>
+                    <p class="mt-2">{p.texto}</p>
+                    <p class="muted mt-2 text-sm">{p.tecnologias}</p>
+                    <p class="mt-4 flex gap-5 text-sm">
+                      <a class="link" href={p.demo}>
+                        Ver demo
+                      </a>
+                      <a class="link" href={p.codigo}>
+                        Ver código
+                      </a>
+                    </p>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </section>
 
         <!-- Dibujos: columnas tipo mosaico. data-grupo agrupa las imágenes del visor -->
-        <section id="dibujos" class="line scroll-mt-4 border-t py-16">
-          <h2 class="text-2xl font-semibold">Dibujos</h2>
+        <section id="dibujos" class="line scroll-mt-4 border-t py-24">
+          <h2 class="text-3xl font-semibold md:text-4xl">Dibujos</h2>
           <p class="muted mt-2">Pulsa en una imagen para verla grande.</p>
           <div class="mt-8 columns-2 gap-4 md:columns-3">
             {
@@ -250,8 +265,8 @@ const logros = [
         </section>
 
         <!-- Certificados -->
-        <section id="certificados" class="line scroll-mt-4 border-t py-16">
-          <h2 class="text-2xl font-semibold">Certificados</h2>
+        <section id="certificados" class="line scroll-mt-4 border-t py-24">
+          <h2 class="text-3xl font-semibold md:text-4xl">Certificados</h2>
           <div class="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {
               certificados.map((c) => (
@@ -284,8 +299,8 @@ const logros = [
         </section>
 
         <!-- Logros -->
-        <section id="logros" class="line scroll-mt-4 border-t py-16">
-          <h2 class="text-2xl font-semibold">Logros</h2>
+        <section id="logros" class="line scroll-mt-4 border-t py-24">
+          <h2 class="text-3xl font-semibold md:text-4xl">Logros</h2>
           <div class="mt-8">
             {
               logros.map((l) => (
@@ -316,8 +331,8 @@ const logros = [
         </section>
 
         <!-- Contacto -->
-        <section id="contacto" class="line scroll-mt-4 border-t py-16">
-          <h2 class="text-2xl font-semibold">Contacto</h2>
+        <section id="contacto" class="line scroll-mt-4 border-t py-24">
+          <h2 class="text-3xl font-semibold md:text-4xl">Contacto</h2>
           <p class="mt-6">
             <a class="link text-lg" href={`mailto:${email}`}>{email}</a>
           </p>
@@ -331,7 +346,7 @@ const logros = [
       <footer class="line muted border-t py-8 text-sm">
         © {new Date().getFullYear()}
         {nombre} · Hecho en tu ciudad.
-      </footer>  
+      </footer>
     </div>
 
     <!-- Visor: ventana que se abre al pulsar una imagen -->
@@ -345,10 +360,10 @@ const logros = [
       </div>
     </dialog>
   </body>
-
-  <script>
-    import "../scripts/tema.js";
-    import "../scripts/visor.js";
-  </script>
-
 </html>
+
+<!-- ---------- 3. SCRIPTS ---------- -->
+<script>
+  import "../scripts/tema.js";
+  import "../scripts/visor.js";
+</script>
