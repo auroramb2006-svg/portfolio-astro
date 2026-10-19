@@ -4,12 +4,12 @@
 /* COLORES. Cámbialos aquí y cambia toda la web.
    Si no pulsas el botón de tema, sigue el tema de tu sistema. */
 :root {
-  --bg: #f1ecef;
+  --bg: #f9f6ff;
   --card: #faf7f9;
   --fg: #2a2230;
-  --muted: #6a5f70;
+  --muted: #a793cd;
   --line: #d8ccd3;
-  --accent: #7a3b69;
+  --accent: #74609b;
   --hero: #cabec6;
 }
 
