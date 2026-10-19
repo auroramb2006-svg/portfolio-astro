@@ -26,13 +26,13 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #222228;
-  --card: #2c2c34;
-  --fg: #f3f0f7;
-  --muted: #a39ca8;
-  --line: #3f3e4a;
-  --accent: #c6a64f;
-  --hero: #d8ba5e;
+  --bg: #1e1e24;
+  --card: #282830;
+  --hero: #33313b;
+  --fg: #f4f2f7;
+  --muted: #a49ea9;
+  --line: #3d3b46;
+  --accent: #b89742;
 }
 
 /* Estilos generales */
