@@ -17,10 +17,10 @@
   :root:not([data-theme="light"]) {
     --bg: #1f1a24;
     --card: #2a2330;
-    --fg: #efe8ee;
-    --muted: #b3a7b8;
+    --fg: #f9f6ff;
+    --muted: #a793cd;
     --line: #3d3345;
-    --accent: #d7a3ca;
+    --accent: #74609b;
     --hero: #3a3040;
   }
 }
