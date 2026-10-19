@@ -1,117 +1,65 @@
-@import "tailwindcss";
-
-/* COLORES. Cámbialos aquí y cambia toda la web.
-   Si no pulsas el botón de tema, sigue el tema de tu sistema. */
 :root {
-  --bg: #fafafa;
-  --card: #ffffff;
-  --fg: #1a1a1a;
-  --muted: #6b6b6b;
-  --line: #e4e4e4;
-  --accent: #2f5bff;
+  --bg: #f1ecef;
+  --card: #faf7f9;
+  --fg: #2a2230;
+  --muted: #6a5f70;
+  --line: #d8ccd3;
+  --accent: #7a3b69;
+  --hero: #cabec6;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #141414;
-    --card: #1c1c1c;
-    --fg: #ededed;
-    --muted: #9a9a9a;
-    --line: #2c2c2c;
-    --accent: #7f9bff;
+    --bg: #1f1a24;
+    --card: #2a2330;
+    --fg: #efe8ee;
+    --muted: #b3a7b8;
+    --line: #3d3345;
+    --accent: #d7a3ca;
+    --hero: #3a3040;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #141414;
-  --card: #1c1c1c;
-  --fg: #ededed;
-  --muted: #9a9a9a;
-  --line: #2c2c2c;
-  --accent: #7f9bff;
+  --bg: #1f1a24;
+  --card: #2a2330;
+  --fg: #efe8ee;
+  --muted: #b3a7b8;
+  --line: #3d3345;
+  --accent: #d7a3ca;
+  --hero: #3a3040;
 }
 
-/* Estilos generales */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'Hanken Grotesk', sans-serif;
-  line-height: 1.65;
-}
-
-a:hover {
-  color: var(--accent);
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-/* Clases pequeñas que uso varias veces */
-.muted {
-  color: var(--muted);
-}
-
-.line {
-  border-color: var(--line);
+h1,
+h2,
+h3 {
+  font-family: 'Fraunces', serif;
+  letter-spacing: -0.02em;
 }
 
 .link {
   text-decoration: underline;
-  text-underline-offset: 4px;
   text-decoration-color: var(--line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  transition: text-decoration-color 0.2s ease;
 }
 
-/* Imagen con marco redondeado y zoom suave */
-.thumb {
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  cursor: zoom-in;
+.link:hover {
+  text-decoration-color: var(--accent);
 }
 
-.thumb img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: transform .35s ease;
-}
-
-.thumb:hover img {
-  transform: scale(1.03);
-}
-
-/* Visor de imágenes (la ventana que se abre al pulsar una imagen) */
-dialog {
-  margin: auto;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  max-width: min(94vw, 1000px);
-  color: #fff;
-}
-
-dialog::backdrop {
-  background: rgba(0, 0, 0, .85);
-}
-
-dialog img {
-  display: block;
-  max-width: 100%;
-  max-height: 78vh;
-  margin: 0 auto;
-  border-radius: 10px;
-}
-
-dialog button {
-  background: rgba(255, 255, 255, .15);
+.boton {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
   border-radius: 999px;
-  padding: .35rem .9rem;
+  padding: 0.6rem 1.3rem;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.boton:hover {
+  color: var(--bg);
+  transform: translateY(-2px);
 }
