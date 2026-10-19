@@ -9,7 +9,7 @@
   --fg: #2a2230;
   --muted: #a793cd;
   --line: #d8ccd3;
-  --accent: #b37d19;
+  --accent: #724e83;
   --hero: #bfaee0;
 }
 
@@ -20,7 +20,7 @@
     --fg: #f9f6ff;
     --muted: #a793cd;
     --line: #3d3345;
-    --accent: #74609b;
+    --accent: #724e83;
     --hero: #bfaee0;
   }
 }
@@ -48,7 +48,7 @@ body {
 }
 
 h1{
-  color: var(--accent);
+  color: var();
 }
 h2,
 h3 {
