@@ -9,6 +9,8 @@
    Después de las rayas empieza el HTML normal.
    ===================================================== */
 import "../styles/global.css";
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ruta = (camino) => base + camino;
 
 // ---------- 1. TUS DATOS ----------
 const nombre = "Aurora Mañé";

@@ -1,3 +1,8 @@
+/* La primera línea activa Tailwind. Sin ella, las clases como "mt-8" o "text-5xl" no hacen nada. */
+@import "tailwindcss";
+
+/* COLORES. Cámbialos aquí y cambia toda la web.
+   Si no pulsas el botón de tema, sigue el tema de tu sistema. */
 :root {
   --bg: #f1ecef;
   --card: #faf7f9;
@@ -30,11 +35,41 @@
   --hero: #3a3040;
 }
 
+/* Estilos generales */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Hanken Grotesk', sans-serif;
+  line-height: 1.65;
+}
+
 h1,
 h2,
 h3 {
   font-family: 'Fraunces', serif;
   letter-spacing: -0.02em;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Clases pequeñas que uso varias veces */
+.muted {
+  color: var(--muted);
+}
+
+.line {
+  border-color: var(--line);
 }
 
 .link {
@@ -62,4 +97,53 @@ h3 {
 .boton:hover {
   color: var(--bg);
   transform: translateY(-2px);
+}
+
+/* Imagen con marco redondeado y zoom suave */
+.thumb {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  cursor: zoom-in;
+}
+
+.thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.35s ease;
+}
+
+.thumb:hover img {
+  transform: scale(1.03);
+}
+
+/* Visor de imágenes (la ventana que se abre al pulsar una imagen) */
+dialog {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(94vw, 1000px);
+  color: #fff;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+dialog img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+dialog button {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
 }
