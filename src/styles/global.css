@@ -10,7 +10,7 @@
   --muted: #a793cd;
   --line: #d8ccd3;
   --accent: #74609b;
-  --hero: #cabec6;
+  --hero: #a793cd;
 }
 
 @media (prefers-color-scheme: dark) {
