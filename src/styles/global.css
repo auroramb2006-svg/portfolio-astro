@@ -9,7 +9,7 @@
   --fg: #2a2230;
   --muted: #a793cd;
   --line: #d8ccd3;
-  --accent: #74609b;
+  --accent: #ebb043;
   --hero: #bfaee0;
 }
 
@@ -47,7 +47,9 @@ body {
   line-height: 1.65;
 }
 
-h1,
+h1{
+  color: var(--accent);
+}
 h2,
 h3 {
   font-family: 'Fraunces', serif;
