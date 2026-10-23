@@ -1,8 +1,5 @@
-/* La primera línea activa Tailwind. Sin ella, las clases como "mt-8" o "text-5xl" no hacen nada. */
 @import "tailwindcss";
 
-/* COLORES. Cámbialos aquí y cambia toda la web.
-   Si no pulsas el botón de tema, sigue el tema de tu sistema. */
 :root {
   --bg: #f5f3fc;
   --card: #faf7f9;
@@ -35,7 +32,6 @@
   --accent: #b89742;
 }
 
-/* Estilos generales */
 html {
   scroll-behavior: smooth;
 }
@@ -65,7 +61,6 @@ a:hover {
   outline-offset: 3px;
 }
 
-/* Clases pequeñas que uso varias veces */
 .muted {
   color: var(--muted);
 }
@@ -101,7 +96,6 @@ a:hover {
   transform: translateY(-2px);
 }
 
-/* Imagen con marco redondeado y zoom suave */
 .thumb {
   display: block;
   width: 100%;
@@ -122,7 +116,6 @@ a:hover {
   transform: scale(1.03);
 }
 
-/* Visor de imágenes (la ventana que se abre al pulsar una imagen) */
 dialog {
   margin: auto;
   padding: 0;

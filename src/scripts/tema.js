@@ -1,5 +1,4 @@
 // Botón de tema claro / oscuro.
-// (El script que aplica el tema al cargar sigue en index.astro, dentro del <head>.)
 
 const raiz = document.documentElement;
 const botonTema = document.getElementById('boton-tema');

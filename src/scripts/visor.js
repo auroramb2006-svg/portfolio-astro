@@ -1,5 +1,3 @@
-// Visor de imágenes: ventana que se abre al pulsar una imagen.
-// Usa los atributos data-grupo, data-img, data-alt y data-titulo de los botones de index.astro.
 
 const visor = document.getElementById('visor');
 const visorImg = document.getElementById('visor-img');
