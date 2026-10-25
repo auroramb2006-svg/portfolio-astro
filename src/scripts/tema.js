@@ -8,9 +8,7 @@ function esOscuro() {
   if (raiz.dataset.theme) return raiz.dataset.theme === 'dark';
   return matchMedia('(prefers-color-scheme: dark)').matches;
 }
-function pintarBoton() {
-  botonTema.textContent = esOscuro() ? 'Modo claro' : 'Modo oscuro';
-}
+
 
 function pintarBoton() {
   const en = document.documentElement.dataset.lang === 'en';
