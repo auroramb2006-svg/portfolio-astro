@@ -173,32 +173,32 @@ const logros = [
       </header>
 
       <main>
-      <!-- PÁGINA: Inicio -->
+   <!-- PÁGINA: Inicio -->
 <section class="pg" id="inicio">
-  <div class="relative rounded-3xl px-6 py-12 text-white md:px-14 md:py-16 shadow-xl" style="background: var(--hero)">
+  <div class="rounded-t-3xl px-8 py-12 text-white md:px-14 md:py-16" style="background: var(--hero)">
     
-    <div class="md:flex md:items-center md:justify-between md:gap-8">
+    <!-- Badge superior -->
+    <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1 text-xs font-medium backdrop-blur-md">
+      <span class="relative flex h-2 w-2">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
+      </span>
+      <T es="Desarrolladora Web & Ilustradora" en="Web Developer & Illustrator" />
+    </div>
+
+    <div class="md:flex md:items-center md:justify-between md:gap-10">
       <!-- Texto principal -->
       <div class="max-w-xl">
-        <!-- Badge indicadora -->
-        <div class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1 text-xs font-medium text-white backdrop-blur-md border border-white/20 mb-5">
-          <span class="relative flex h-2 w-2">
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-            <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
-          </span>
-          <T es="Desarrolladora Web & Ilustradora" en="Web Developer & Illustrator" />
-        </div>
-
-        <h1 class="text-4xl leading-tight font-semibold md:text-6xl">
+        <h1 class="text-4xl leading-[1.05] font-semibold md:text-6xl lg:text-7xl">
           <T es={`Hola, soy ${primerNombre}.`} en={`Hi, I’m ${primerNombre}.`} />
         </h1>
 
-        <p class="mt-4 text-base md:text-lg text-white/90 leading-relaxed">
+        <p class="mt-5 text-base md:text-lg lg:text-xl font-normal leading-relaxed text-white/90">
           <T {...intro} />
         </p>
 
         <!-- Botones de Acción -->
-        <div class="mt-6 flex flex-wrap items-center gap-4">
+        <div class="mt-8 flex flex-wrap items-center gap-4">
           <a class="boton boton-claro" href="#proyectos">
             <T es="Ver proyectos" en="See projects" />
           </a>
@@ -208,36 +208,38 @@ const logros = [
         </div>
       </div>
 
-      <!-- Foto de Perfil (Ajustada para que no sobresalga) -->
+      <!-- Foto de Perfil -->
       <div class="mt-8 flex justify-center md:mt-0 shrink-0">
-        <div class="relative">
-          <img
-            src={foto}
-            alt={`Foto de ${nombre}`}
-            class="h-36 w-36 rounded-full border-4 border-white/40 object-cover shadow-lg md:h-48 md:w-48"
-          />
-        </div>
+        <img
+          src={foto}
+          alt={`Foto de ${nombre}`}
+          class="h-36 w-36 rounded-full border-4 border-white/40 object-cover md:h-48 md:w-48 lg:h-52 lg:w-52"
+        />
       </div>
     </div>
 
-    <!-- Puntos fuertes rápidos -->
-    <div class="mt-10 grid grid-cols-3 gap-4 border-t border-white/20 pt-6 text-center md:text-left">
+    <!-- Habilidades destacadas abajo -->
+    <div class="mt-12 grid grid-cols-3 gap-4 border-t border-white/20 pt-6">
       <div>
-        <p class="text-lg font-bold md:text-xl">Frontend</p>
+        <p class="text-base font-semibold md:text-lg">Frontend</p>
         <p class="text-xs text-white/70"><T es="HTML, CSS, JS, Astro" en="HTML, CSS, JS, Astro" /></p>
       </div>
       <div>
-        <p class="text-lg font-bold md:text-xl">Backend</p>
+        <p class="text-base font-semibold md:text-lg">Backend</p>
         <p class="text-xs text-white/70"><T es="PHP & MySQL" en="PHP & MySQL" /></p>
       </div>
       <div>
-        <p class="text-lg font-bold md:text-xl">Diseño</p>
+        <p class="text-base font-semibold md:text-lg">Diseño</p>
         <p class="text-xs text-white/70"><T es="Ilustración & UI" en="Illustration & UI" /></p>
       </div>
     </div>
 
   </div>
-  <Gotas animar />
+
+  <!-- Gotas integradas sin margen inferior -->
+  <div class="block w-full overflow-hidden leading-none">
+    <Gotas animar />
+  </div>
 </section>
 
         <!-- PÁGINA: Proyectos -->
