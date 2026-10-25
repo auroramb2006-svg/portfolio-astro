@@ -12,9 +12,8 @@ function pintarBoton() {
   botonTema.textContent = esOscuro() ? 'Modo claro' : 'Modo oscuro';
 }
 
-botonTema.addEventListener('click', () => {
-  raiz.dataset.theme = esOscuro() ? 'light' : 'dark';
-  localStorage.setItem('tema', raiz.dataset.theme); // se recuerda la próxima vez
-  pintarBoton();
-});
-pintarBoton();
+function pintarBoton() {
+  const en = document.documentElement.dataset.lang === 'en';
+  botonTema.textContent = esOscuro() ? (en ? 'Light mode' : 'Modo claro') : (en ? 'Dark mode' : 'Modo oscuro');
+}
+document.addEventListener('idioma', pintarBoton);

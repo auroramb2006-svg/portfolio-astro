@@ -1,135 +1,112 @@
 ---
 /* =====================================================================
-   ESTE ES TODO EL PORTFOLIO. Se lee de arriba abajo:
-   1. Tus datos (aquí escribes tú)
-   2. El HTML de la página
-   3. Dos scripts, cada uno en su archivo (carpeta src/scripts/)
-
-   La parte entre las rayas --- se ejecuta al construir la web.
-   Después de las rayas empieza el HTML normal.
-   ===================================================== */
+   TODO EL PORTFOLIO. Se lee de arriba abajo:
+   1. Tus datos (aquí escribes tú). Lo que cambia de idioma es { es: "...", en: "..." }
+   2. El HTML de la página: cada <section class="pg"> es una "página"
+   3. Los scripts, cada uno en su archivo (carpeta src/scripts/)
+   ===================================================================== */
 import "../styles/global.css";
+import T from "../components/T.astro";
+import Gotas from "../components/Gotas.astro";
 
-// Tu web se publica en /portfolio-astro/ (ver "base" en astro.config.mjs).
-// Esta función añade ese prefijo a las rutas de las imágenes para que se encuentren.
+// La web se publica en /portfolio-astro/ (ver "base" en astro.config.mjs).
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const ruta = (camino) => base + camino;
 
 // ---------- 1. TUS DATOS ----------
 const nombre = "Aurora Mañé";
-const intro =
-  "Estudio desarrollo web y también dibujo. Me gusta que lo que construyo funcione bien y se entienda a la primera.";
+const primerNombre = nombre.split(" ")[0];
+const intro = {
+  es: "Estudio desarrollo web y también dibujo. Me gusta que lo que construyo funcione bien y se entienda a la primera.",
+  en: "I study web development and I also draw. I like what I build to work well and to be clear at first glance.",
+};
 const email = "auroramb2006@gmail.com";
 const github = "https://github.com/auroramb2006-svg";
 const linkedin = "https://www.linkedin.com/in/aurora-ma%C3%B1%C3%A9-bl%C3%A1zquez-362659388/";
-
-const primerNombre = nombre.split(" ")[0];
-const asunto = encodeURIComponent(
-  `Hola ${primerNombre}, me gustaría hablar contigo`,
-);
-
-const menu = [
-  { href: "#proyectos", titulo: "Proyectos", texto: "Lo que he construido" },
-  { href: "#dibujos", titulo: "Dibujos", texto: "Lo que he dibujado" },
-  {
-    href: "#certificados",
-    titulo: "Certificados",
-    texto: "Lo que he estudiado",
-  },
-  { href: "#logros", titulo: "Logros", texto: "Lo que he conseguido" },
-  { href: "#contacto", titulo: "Contacto", texto: "Hablemos" },
-];
-
-// Tus imágenes están en la carpeta public/img/.
-// Cuando pongas las tuyas, cambia el nombre (y .svg por .jpg si hace falta).
+const asunto = encodeURIComponent(`Hola ${primerNombre}, me gustaría hablar contigo`);
 const foto = ruta("/img/pfp.jpg");
 
+const menu = [
+  { href: "#proyectos", titulo: { es: "Proyectos", en: "Projects" }, texto: { es: "Lo que he construido", en: "What I’ve built" } },
+  { href: "#dibujos", titulo: { es: "Dibujos", en: "Drawings" }, texto: { es: "Lo que he dibujado", en: "What I’ve drawn" } },
+  { href: "#certificados", titulo: { es: "Certificados", en: "Certificates" }, texto: { es: "Lo que he estudiado", en: "What I’ve studied" } },
+  { href: "#logros", titulo: { es: "Logros", en: "Achievements" }, texto: { es: "Lo que he conseguido", en: "What I’ve achieved" } },
+  { href: "#contacto", titulo: { es: "Contacto", en: "Contact" }, texto: { es: "Hablemos", en: "Let’s talk" } },
+];
+
+// img: null = marco vacío. Cuando tengas la captura, pon ruta("/img/academia.webp")
 const proyectos = [
   {
     nombre: "La Academia",
-    fecha: "Jul-Ago 2026",
-    img: ruta("/img/proyecto-1.svg"),
-    alt: "Captura del proyecto uno",
-    texto: "Una frase sobre qué hace y qué problema resuelve.",
-    tecnologias: "Astro, Tailwind",
-    demo: "#",
-    codigo: "#",
+    fecha: { es: "Web en producción · Jul-Ago 2026", en: "Live website · Jul–Aug 2026" },
+    img: null,
+    alt: "Captura de la web de La Academia",
+    texto: {
+      es: "Web de una academia de refuerzo de Arroyo de la Miel, hecha en equipo de dos. Diseñé la identidad visual, el header, el footer, el inicio, las animaciones y el popup de reserva, y monté el servidor en PHP y la base de datos en Hostinger.",
+      en: "Website for a tutoring academy in Arroyo de la Miel, built by a team of two. I designed the visual identity, header, footer, home page, animations and booking popup, and set up the PHP server and the database on Hostinger.",
+    },
+    tecnologias: { es: "HTML, CSS, JavaScript, PHP, MySQL", en: "HTML, CSS, JavaScript, PHP, MySQL" },
+    demo: "https://laacademiasc.es",
+    codigo: null,
   },
   {
-    nombre: "Proyecto dos",
-    fecha: "Abril de 2026",
-    img: ruta("/img/proyecto-2.svg"),
-    alt: "Captura del proyecto dos",
-    texto: "Una frase sobre qué hace y qué problema resuelve.",
-    tecnologias: "JavaScript, HTML, CSS",
-    demo: "#",
-    codigo: "#",
+    nombre: "ASTI Robotics Challenge",
+    fecha: { es: "Concurso · Mar 2026", en: "Contest · Mar 2026" },
+    img: null,
+    alt: "Foto del equipo en el ASTI Robotics Challenge",
+    texto: {
+      es: "Concurso de robótica educativa en equipo de cuatro. Me encargué del marketing, del diseño visual y de la planificación económica.",
+      en: "Educational robotics contest, team of four. I handled marketing, visual design and financial planning.",
+    },
+    tecnologias: { es: "Marketing, diseño, gestión económica", en: "Marketing, design, financial planning" },
+    demo: null,
+    codigo: null,
+  },
+  {
+    nombre: "Málaga Business Bootcamp",
+    fecha: { es: "Bootcamp · Ene 2026", en: "Bootcamp · Jan 2026" },
+    img: null,
+    alt: "Equipo del Málaga Business Bootcamp",
+    texto: {
+      es: "Proyecto web para un emprendedor local con estudiantes neerlandeses de Sint Lucas, en inglés. Aporté ideas y diseñé los elementos de la página.",
+      en: "Web project for a local entrepreneur with Dutch students from Sint Lucas, working in English. I contributed ideas and designed the page elements.",
+    },
+    tecnologias: { es: "Diseño web, trabajo en inglés", en: "Web design, working in English" },
+    demo: null,
+    codigo: null,
   },
 ];
 
+// De momento son tus marcos de ejemplo. Sustitúyelos por tus dibujos (de 6 a 8 se ven bien).
 const dibujos = [
-  {
-    img: ruta("/img/dibujo-1.svg"),
-    alt: "Descripción del dibujo 1",
-    titulo: "Dibujo 1",
-  },
-  {
-    img: ruta("/img/dibujo-2.svg"),
-    alt: "Descripción del dibujo 2",
-    titulo: "Dibujo 2",
-  },
-  {
-    img: ruta("/img/dibujo-3.svg"),
-    alt: "Descripción del dibujo 3",
-    titulo: "Dibujo 3",
-  },
-  {
-    img: ruta("/img/dibujo-4.svg"),
-    alt: "Descripción del dibujo 4",
-    titulo: "Dibujo 4",
-  },
+  { img: ruta("/img/dibujo-1.svg"), alt: "Descripción del dibujo 1", titulo: "Dibujo 1" },
+  { img: ruta("/img/dibujo-2.svg"), alt: "Descripción del dibujo 2", titulo: "Dibujo 2" },
+  { img: ruta("/img/dibujo-3.svg"), alt: "Descripción del dibujo 3", titulo: "Dibujo 3" },
+  { img: ruta("/img/dibujo-4.svg"), alt: "Descripción del dibujo 4", titulo: "Dibujo 4" },
 ];
 
 const certificados = [
-  {
-    img: ruta("/img/erasmuslogo.png"),
-    alt: "Certificado de Erasmus+ ganador de logotipo internacional",
-    titulo: "Certificado de Erasmus+ ganador logotipo internacional",
-    anio: "2024",
-  },
-  {
-    img: ruta("/img/erasmus+.png"),
-    alt: "Certificado de Erasmus+ y Etwinning",
-    titulo: "Certificado de Erasmus+ y Etwinning",
-    anio: "2024",
-  },
-  {
-    img: ruta("/img/hackatonOracle.jpeg"),
-    alt: "1.er premio Hackatón Oracle y CIFAL Málaga (UNITAR)",
-    titulo: "1.er premio Hackatón Oracle y CIFAL Málaga (UNITAR)",
-    anio: "2024",
-  },
-  {
-    img: ruta("/img/holandaErasmus.png"),
-    alt: "Málaga Business Bootcamp · Digitech x Sint Lucas",
-    titulo: "Málaga Business Bootcamp · Digitech x Sint Lucas",
-    anio: "2026",
-  },
+  { img: ruta("/img/erasmuslogo.png"), alt: "Diploma del concurso de logo de Erasmus+", titulo: { es: "Erasmus+: ganadora del concurso internacional de logo", en: "Erasmus+: international logo contest winner" }, anio: "2024" },
+  { img: ruta("/img/erasmus+.png"), alt: "Certificado de Erasmus+ y eTwinning", titulo: { es: "Erasmus+ y eTwinning", en: "Erasmus+ and eTwinning" }, anio: "2024" },
+  { img: ruta("/img/hackatonOracle.jpeg"), alt: "Diploma del hackatón de Oracle y CIFAL", titulo: { es: "1.er premio Hackatón Oracle y CIFAL Málaga (UNITAR)", en: "1st prize, Oracle and CIFAL Málaga (UNITAR) hackathon" }, anio: "2024" },
+  { img: ruta("/img/holandaErasmus.png"), alt: "Certificado del Málaga Business Bootcamp", titulo: { es: "Málaga Business Bootcamp · Digitech x Sint Lucas", en: "Málaga Business Bootcamp · Digitech x Sint Lucas" }, anio: "2026" },
 ];
 
-// En los logros la foto es opcional: si no quieres foto, borra la línea "img" y "alt".
 const logros = [
   {
-    anio: "2026",
-    titulo: "Primer premio en el concurso del centro",
-    texto: "Una frase sobre qué hiciste.",
-    img: ruta("/img/logro-1.svg"),
-    alt: "Foto de la entrega del premio",
+    anio: "2024",
+    titulo: { es: "1.er premio Hackatón Oracle y CIFAL Málaga", en: "1st prize at the Oracle and CIFAL Málaga hackathon" },
+    texto: { es: "Prototipo de una ducha ecointeligente: me encargué de la mecánica y del concepto.", en: "Prototype of an eco-smart shower: I handled the mechanics and the concept." },
   },
   {
-    anio: "2025",
-    titulo: "Mi primer proyecto publicado",
-    texto: "Una frase sobre qué aprendiste.",
+    anio: "2024",
+    titulo: { es: "Ganadora internacional del concurso de logo de Erasmus+", en: "International winner of the Erasmus+ logo contest" },
+    texto: { es: "Con estancia en Alemania.", en: "Including a stay in Germany." },
+  },
+  {
+    anio: "2021",
+    titulo: { es: "Best Student en Arte y beca de arte", en: "Best Student in Art and art scholarship" },
+    texto: { es: "British School of Almería.", en: "British School of Almería." },
   },
 ];
 ---
@@ -140,6 +117,7 @@ const logros = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Aurora Mañé: desarrolladora web y dibujante en Málaga. Proyectos, certificados y logros." />
     <title>{nombre} | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -148,95 +126,94 @@ const logros = [
       rel="stylesheet"
     />
     <script is:inline>
-      // Aplica el tema guardado antes de mostrar la página, para que no parpadee
+      // Aplica el tema y el idioma guardados antes de pintar, para que no parpadee
       try {
         const t = localStorage.getItem("tema");
         if (t) document.documentElement.dataset.theme = t;
+        const l = localStorage.getItem("idioma");
+        if (l) document.documentElement.dataset.lang = l;
       } catch (e) {}
     </script>
   </head>
 
   <body>
+    <!-- Filtro que redondea las gotas (lo usa el componente Gotas) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <filter id="goo" x="-5%" y="-30%" width="110%" height="170%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="9" />
+          <feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 20 -9" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- La cortina: está fuera de pantalla y baja al cambiar de página (ver cortina.js) -->
+    <div id="cortina" aria-hidden="true">Aurora<Gotas /></div>
+
     <div class="mx-auto max-w-5xl px-6">
-      <!-- Cabecera: nombre, menú, botón de tema y botón de contacto -->
-      <header
-        class="flex flex-wrap items-center justify-between gap-6 py-8"
-      >
-        <a href="#" class="font-semibold">{nombre}</a>
+      <!-- Cabecera: nombre, menú y botones -->
+      <header class="flex flex-wrap items-center justify-between gap-6 py-8">
+        <a href="#inicio" class="font-semibold">{nombre}</a>
         <nav class="flex flex-wrap gap-x-6 gap-y-3">
           {
             menu.map((m) => (
               <a href={m.href} class="block leading-tight">
-                <span class="block text-sm font-medium">{m.titulo}</span>
-                <span class="muted hidden text-xs md:block">{m.texto}</span>
+                <span class="block text-sm font-medium"><T {...m.titulo} /></span>
+                <span class="muted hidden text-xs whitespace-nowrap md:block"><T {...m.texto} /></span>
               </a>
             ))
           }
         </nav>
-        <div class="flex items-center gap-3">
-          <button
-            id="boton-tema"
-            type="button"
-            class="line muted rounded-full border px-3 text-sm"></button>
-          <a class="boton" href={`mailto:${email}?subject=${asunto}`}
-            >Escríbeme</a
-          >
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" data-lang-btn="es" class="mini" aria-label="Español">ES</button>
+          <button type="button" data-lang-btn="en" class="mini" aria-label="English">EN</button>
+          <button id="boton-tema" type="button" class="mini"></button>
+          <button id="imprimir" type="button" class="mini"><T es="Imprimir" en="Print" /></button>
         </div>
       </header>
 
       <main>
-        <!-- Portada -->
-        <section
-          class="mb-16 rounded-3xl px-8 py-14 md:px-14 md:py-20"
-          style="background: var(--hero)"
-        >
-          <div class="md:flex md:items-center md:justify-between md:gap-12">
-            <div class="max-w-2xl">
-              <h1 class="text-5xl leading-[1.05] font-semibold md:text-7xl">
-                Hola, soy {primerNombre}.
-              </h1>
-              <p class="mt-6 text-lg md:text-xl">{intro}</p>
-              <a
-                class="boton mt-8"
-                href={`mailto:${email}?subject=${asunto}`}>Escríbeme</a
-              >
+        <!-- PÁGINA: Inicio -->
+        <section class="pg" id="inicio">
+          <div class="rounded-t-3xl px-8 py-14 text-white md:px-14 md:py-20" style="background: var(--hero)">
+            <div class="md:flex md:items-center md:justify-between md:gap-12">
+              <div class="max-w-2xl">
+                <h1 class="text-5xl leading-[1.05] font-semibold md:text-7xl">
+                  <T es={`Hola, soy ${primerNombre}.`} en={`Hi, I’m ${primerNombre}.`} />
+                </h1>
+                <p class="mt-6 text-lg md:text-xl"><T {...intro} /></p>
+                <a class="boton boton-claro mt-8" href="#proyectos"><T es="Ver proyectos" en="See projects" /></a>
+              </div>
+              <img
+                src={foto}
+                alt={`Foto de ${nombre}`}
+                class="mt-10 h-40 w-40 rounded-full border-4 border-white/50 object-cover md:mt-0 md:h-56 md:w-56"
+              />
             </div>
-            <img
-              src={foto}
-              alt={`Foto de ${nombre}`}
-              class="mt-10 h-40 w-40 rounded-full border-4 border-white/50 object-cover md:mt-0 md:h-56 md:w-56"
-            />
           </div>
+          <Gotas animar />
         </section>
 
-        <!-- Proyectos: .map() crea una tarjeta por cada proyecto de la lista -->
-        <section id="proyectos" class="line scroll-mt-4 border-t py-24">
-          <h2 class="text-3xl font-semibold md:text-4xl">Proyectos</h2>
+        <!-- PÁGINA: Proyectos -->
+        <section id="proyectos" class="pg line scroll-mt-4 border-t py-24" hidden>
+          <h2 class="text-3xl font-semibold md:text-4xl"><T es="Proyectos" en="Projects" /></h2>
           <div class="mt-8 grid gap-6 md:grid-cols-2">
             {
               proyectos.map((p) => (
-                <article
-                  class="line overflow-hidden rounded-2xl border"
-                  style="background: var(--card)"
-                >
-                  <img
-                    src={p.img}
-                    alt={p.alt}
-                    loading="lazy"
-                    class="aspect-[16/9] w-full object-cover"
-                  />
+                <article class="line overflow-hidden rounded-2xl border" style="background: var(--card)">
+                  {p.img ? (
+                    <img src={p.img} alt={p.alt} loading="lazy" class="aspect-[16/9] w-full object-cover" />
+                  ) : (
+                    <div class="vacio aspect-[16/9]" aria-hidden="true"></div>
+                  )}
                   <div class="p-6">
-                    <p class="muted text-sm">{p.fecha}</p>
+                    <p class="muted text-sm"><T {...p.fecha} /></p>
                     <h3 class="mt-1 text-xl font-semibold">{p.nombre}</h3>
-                    <p class="mt-2">{p.texto}</p>
-                    <p class="muted mt-2 text-sm">{p.tecnologias}</p>
+                    <p class="mt-2"><T {...p.texto} /></p>
+                    <p class="muted mt-2 text-sm"><T {...p.tecnologias} /></p>
                     <p class="mt-4 flex gap-5 text-sm">
-                      <a class="link" href={p.demo}>
-                        Ver demo
-                      </a>
-                      <a class="link" href={p.codigo}>
-                        Ver código
-                      </a>
+                      {p.demo && <a class="link" href={p.demo}><T es="Ver la web" en="Visit the site" /></a>}
+                      {p.codigo && <a class="link" href={p.codigo}><T es="Ver código" en="View code" /></a>}
                     </p>
                   </div>
                 </article>
@@ -245,21 +222,14 @@ const logros = [
           </div>
         </section>
 
-        <!-- Dibujos: columnas tipo mosaico. data-grupo agrupa las imágenes del visor -->
-        <section id="dibujos" class="line scroll-mt-4 border-t py-24">
-          <h2 class="text-3xl font-semibold md:text-4xl">Dibujos</h2>
-          <p class="muted mt-2">Pulsa en una imagen para verla grande.</p>
+        <!-- PÁGINA: Dibujos -->
+        <section id="dibujos" class="pg line scroll-mt-4 border-t py-24" hidden>
+          <h2 class="text-3xl font-semibold md:text-4xl"><T es="Dibujos" en="Drawings" /></h2>
+          <p class="muted mt-2"><T es="Pulsa en una imagen para verla grande." en="Click an image to see it larger." /></p>
           <div class="mt-8 columns-2 gap-4 md:columns-3">
             {
               dibujos.map((d) => (
-                <button
-                  type="button"
-                  class="thumb mb-4 break-inside-avoid"
-                  data-grupo="dibujos"
-                  data-img={d.img}
-                  data-alt={d.alt}
-                  data-titulo={d.titulo}
-                >
+                <button type="button" class="thumb mb-4 break-inside-avoid" data-grupo="dibujos" data-img={d.img} data-alt={d.alt} data-titulo={d.titulo}>
                   <img src={d.img} alt={d.alt} loading="lazy" />
                 </button>
               ))
@@ -267,33 +237,19 @@ const logros = [
           </div>
         </section>
 
-        <!-- Certificados -->
-        <section id="certificados" class="line scroll-mt-4 border-t py-24">
-          <h2 class="text-3xl font-semibold md:text-4xl">Certificados</h2>
+        <!-- PÁGINA: Certificados -->
+        <section id="certificados" class="pg line scroll-mt-4 border-t py-24" hidden>
+          <h2 class="text-3xl font-semibold md:text-4xl"><T es="Certificados" en="Certificates" /></h2>
           <div class="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {
               certificados.map((c) => (
                 <figure>
-                  <button
-                    type="button"
-                    class="thumb"
-                    data-grupo="certificados"
-                    data-img={c.img}
-                    data-alt={c.alt}
-                    data-titulo={c.titulo}
-                  >
-                    <img
-                      src={c.img}
-                      alt={c.alt}
-                      loading="lazy"
-                      class="aspect-[4/3] object-cover"
-                    />
+                  <button type="button" class="thumb" data-grupo="certificados" data-img={c.img} data-alt={c.alt} data-titulo={c.titulo.es}>
+                    <img src={c.img} alt={c.alt} loading="lazy" class="aspect-[4/3] object-cover" />
                   </button>
                   <figcaption class="mt-3">
-                    <p class="font-medium">{c.titulo}</p>
-                    <p class="muted text-sm">
-                       · {c.anio}
-                    </p>
+                    <p class="font-medium"><T {...c.titulo} /></p>
+                    <p class="muted text-sm">{c.anio}</p>
                   </figcaption>
                 </figure>
               ))
@@ -301,31 +257,17 @@ const logros = [
           </div>
         </section>
 
-        <!-- Logros -->
-        <section id="logros" class="line scroll-mt-4 border-t py-24">
-          <h2 class="text-3xl font-semibold md:text-4xl">Logros</h2>
+        <!-- PÁGINA: Logros -->
+        <section id="logros" class="pg line scroll-mt-4 border-t py-24" hidden>
+          <h2 class="text-3xl font-semibold md:text-4xl"><T es="Logros" en="Achievements" /></h2>
           <div class="mt-8">
             {
               logros.map((l) => (
-                <div class="line grid gap-4 border-t py-6 first:border-t-0 first:pt-0 md:grid-cols-[6rem_1fr_12rem]">
+                <div class="line grid gap-4 border-t py-6 first:border-t-0 first:pt-0 md:grid-cols-[6rem_1fr]">
                   <p class="muted">{l.anio}</p>
                   <div>
-                    <h3 class="font-semibold">{l.titulo}</h3>
-                    <p class="muted mt-1">{l.texto}</p>
-                  </div>
-                  <div>
-                    {l.img && (
-                      <button
-                        type="button"
-                        class="thumb"
-                        data-grupo="logros"
-                        data-img={l.img}
-                        data-alt={l.alt}
-                        data-titulo={l.titulo}
-                      >
-                        <img src={l.img} alt={l.alt} loading="lazy" />
-                      </button>
-                    )}
+                    <h3 class="font-semibold"><T {...l.titulo} /></h3>
+                    <p class="muted mt-1"><T {...l.texto} /></p>
                   </div>
                 </div>
               ))
@@ -333,12 +275,10 @@ const logros = [
           </div>
         </section>
 
-        <!-- Contacto -->
-        <section id="contacto" class="line scroll-mt-4 border-t py-24">
-          <h2 class="text-3xl font-semibold md:text-4xl">Contacto</h2>
-          <p class="mt-6">
-            <a class="link text-lg" href={`mailto:${email}`}>{email}</a>
-          </p>
+        <!-- PÁGINA: Contacto -->
+        <section id="contacto" class="pg line scroll-mt-4 border-t py-24" hidden>
+          <h2 class="text-3xl font-semibold md:text-4xl"><T es="Contacto" en="Contact" /></h2>
+          <p class="mt-6"><a class="link text-lg" href={`mailto:${email}?subject=${asunto}`}>{email}</a></p>
           <p class="muted mt-4 flex gap-6">
             <a class="link" href={github}>GitHub</a>
             <a class="link" href={linkedin}>LinkedIn</a>
@@ -346,10 +286,7 @@ const logros = [
         </section>
       </main>
 
-      <footer class="line muted border-t py-8 text-sm">
-        © {new Date().getFullYear()}
-        {nombre} · Málaga.
-      </footer>
+      <footer class="line muted border-t py-8 text-sm">© {new Date().getFullYear()} {nombre} Blázquez · Málaga</footer>
     </div>
 
     <!-- Visor: ventana que se abre al pulsar una imagen -->
@@ -357,9 +294,9 @@ const logros = [
       <img id="visor-img" alt="" />
       <p id="visor-texto" class="mt-3 text-center text-sm"></p>
       <div class="mt-3 flex justify-center gap-3">
-        <button type="button" id="anterior">← Anterior</button>
-        <button type="button" id="cerrar">Cerrar</button>
-        <button type="button" id="siguiente">Siguiente →</button>
+        <button type="button" id="anterior">← <T es="Anterior" en="Previous" /></button>
+        <button type="button" id="cerrar"><T es="Cerrar" en="Close" /></button>
+        <button type="button" id="siguiente"><T es="Siguiente" en="Next" /> →</button>
       </div>
     </dialog>
   </body>
@@ -369,4 +306,5 @@ const logros = [
 <script>
   import "../scripts/tema.js";
   import "../scripts/visor.js";
+  import "../scripts/cortina.js";
 </script>

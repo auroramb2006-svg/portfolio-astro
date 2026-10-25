@@ -4,10 +4,10 @@
   --bg: #f5f3fc;
   --card: #faf7f9;
   --fg: #2a2230;
-  --muted: #a793cd;
+  --muted: #6b5a85;
   --line: #d8ccd3;
   --accent: #724e83;
-  --hero: #bfaee0;
+  --hero: #724e83;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,21 +15,19 @@
     --bg: #1f1a24;
     --card: #2a2330;
     --fg: #f5f3fc;
-    --muted: #a793cd;
+    --muted: #b9a8d6;
     --line: #3d3345;
-    --accent: #724e83;
-    --hero: #bfaee0;
+    --accent: #c4a9e6;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #1e1e24;
-  --card: #282830;
-  --hero: #33313b;
-  --fg: #f4f2f7;
-  --muted: #b49252;
-  --line: #3d3b46;
-  --accent: #b89742;
+  --bg: #1f1a24;
+  --card: #2a2330;
+  --fg: #f5f3fc;
+  --muted: #b9a8d6;
+  --line: #3d3345;
+  --accent: #c4a9e6;
 }
 
 html {
@@ -43,9 +41,9 @@ body {
   line-height: 1.65;
 }
 
-h1{
-  color: var();
-}
+
+
+h1, 
 h2,
 h3 {
   font-family: 'Fraunces', serif;
@@ -141,4 +139,33 @@ dialog button {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   padding: 0.35rem 0.9rem;
+}
+
+/* Idioma: cada <T> trae los dos textos y se ve el del idioma activo */
+html:not([data-lang="en"]) [lang="en"] { display: none; }
+html[data-lang="en"] [lang="es"] { display: none; }
+
+/* Gotas */
+.gotas { display: block; width: 100%; height: 130px; margin-top: -1px; overflow: hidden; }
+.dp { transform-box: fill-box; transform-origin: top; animation: caer 1s cubic-bezier(.3,1.3,.5,1) both; animation-delay: var(--d); }
+@keyframes caer { from { transform: scaleY(.05); } }
+
+/* Cortina: un div fijo, fuera de pantalla por arriba. Con la clase "baja" desciende y tapa todo. */
+#cortina {
+  position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
+  background: var(--hero); color: #fff; font: 600 2.4rem Fraunces, serif;
+  transform: translateY(calc(-100% - 150px));
+  transition: transform .6s cubic-bezier(.65, 0, .35, 1);
+  pointer-events: none;
+}
+#cortina.baja { transform: none; pointer-events: auto; }
+#cortina .gotas { position: absolute; left: 0; top: calc(100% - 1px); }
+
+nav a[aria-current="page"] { color: var(--accent); }
+.boton-claro { background: #fff; color: #4a2f5c; }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+@media print {
+  header, #cortina, .gotas, #dibujos { display: none !important; }
+  .pg[hidden] { display: block !important; }
 }

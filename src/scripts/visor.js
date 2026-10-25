@@ -1,15 +1,15 @@
-
+// Visor de imágenes (sin cambios respecto a tu versión).
 const visor = document.getElementById('visor');
 const visorImg = document.getElementById('visor-img');
 const visorTexto = document.getElementById('visor-texto');
-let imagenes = []; // las imágenes del grupo abierto (dibujos, certificados o logros)
-let actual = 0;    // cuál se está viendo
+let imagenes = [];
+let actual = 0;
 
 function mostrar() {
   const b = imagenes[actual];
   visorImg.src = b.dataset.img;
   visorImg.alt = b.dataset.alt;
-  visorTexto.textContent = `${b.dataset.titulo} (${actual + 1} de ${imagenes.length})`;
+  visorTexto.textContent = `${b.dataset.titulo} (${actual + 1} / ${imagenes.length})`;
 }
 function mover(paso) {
   actual = (actual + paso + imagenes.length) % imagenes.length;
@@ -19,13 +19,12 @@ function mover(paso) {
 document.addEventListener('click', (e) => {
   const boton = e.target.closest('[data-grupo]');
   if (boton) {
-    // Busca todas las imágenes del mismo grupo y abre la que se ha pulsado
     imagenes = [...document.querySelectorAll(`[data-grupo="${boton.dataset.grupo}"]`)];
     actual = imagenes.indexOf(boton);
     mostrar();
     visor.showModal();
   } else if (e.target === visor) {
-    visor.close(); // clic fuera de la imagen
+    visor.close();
   }
 });
 
