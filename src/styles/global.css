@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Indicar a Tailwind v4 que active el modo oscuro cuando la clase .dark esté en la etiqueta <html> */
+@variant dark (&:where(.dark, .dark *));
+
 /* ---------- Colores: claro, oscuro automático y oscuro con el botón ---------- */
 :root {
   --bg: #f5f3fc;
@@ -10,77 +13,267 @@
   --accent: #724e83;
   --hero: #724e83;
 }
+
+/* Modo oscuro automático según el sistema (siempre que no se haya forzado el modo claro) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #1f1a24; --card: #2a2330; --fg: #f5f3fc;
     --muted: #b9a8d6; --line: #3d3345; --accent: #c4a9e6;
   }
 }
-:root[data-theme="dark"] {
-  --bg: #1f1a24; --card: #2a2330; --fg: #f5f3fc;
-  --muted: #b9a8d6; --line: #3d3345; --accent: #c4a9e6;
+
+/* Modo oscuro forzado mediante atributo (ej: data-theme="dark") o clase (.dark) */
+:root[data-theme="dark"],
+html.dark {
+  --bg: #1f1a24; 
+  --card: #2a2330; 
+  --fg: #f5f3fc;
+  --muted: #b9a8d6; 
+  --line: #3d3345; 
+  --accent: #c4a9e6;
 }
 
-html { scroll-behavior: smooth; background: var(--bg); }
-body { background: var(--bg); color: var(--fg); font-family: 'Hanken Grotesk', sans-serif; line-height: 1.65; }
-h1, h2, h3 { font-family: 'Fraunces', serif; letter-spacing: -0.02em; }
-a:hover { color: var(--accent); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
 
-.muted { color: var(--muted); }
-.line { border-color: var(--line); }
-.link { text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 2px; text-underline-offset: 5px; transition: text-decoration-color .2s ease; }
-.link:hover { text-decoration-color: var(--accent); }
-.boton { display: inline-block; background: var(--accent); color: var(--bg); border-radius: 999px; padding: .6rem 1.3rem; font-weight: 500; transition: transform .2s ease; }
-.boton:hover { color: var(--bg); transform: translateY(-2px); }
-.boton.boton-claro { background: #fff; color: #4a2f5c; }
-.boton.boton-claro:hover { color: #4a2f5c; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Hanken Grotesk', sans-serif;
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Fraunces', serif;
+  letter-spacing: -0.02em;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.line {
+  border-color: var(--line);
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  transition: text-decoration-color .2s ease;
+}
+
+.link:hover {
+  text-decoration-color: var(--accent);
+}
+
+.boton {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 999px;
+  padding: .6rem 1.3rem;
+  font-weight: 500;
+  transition: transform .2s ease;
+}
+
+.boton:hover {
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+
+.boton.boton-claro {
+  background: #fff;
+  color: #4a2f5c;
+}
+
+.boton.boton-claro:hover {
+  color: #4a2f5c;
+}
 
 /* Botoncitos de la cabecera (idioma, tema, imprimir). Ancho fijo = nada se mueve al cambiar de idioma */
-.mini { color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: .1rem .8rem; font-size: .88rem; min-width: 3rem; }
-#boton-tema { min-width: 7.6rem; }
-#imprimir { min-width: 5.6rem; }
-.mini[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.mini {
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .1rem .8rem;
+  font-size: .88rem;
+  min-width: 3rem;
+}
 
-.thumb { display: block; width: 100%; overflow: hidden; border-radius: 14px; border: 1px solid var(--line); cursor: zoom-in; }
-.thumb img { display: block; width: 100%; height: auto; transition: transform .35s ease; }
-.thumb:hover img { transform: scale(1.03); }
-.vacio { background: repeating-linear-gradient(135deg, transparent 0 10px, var(--line) 10px 11px), var(--bg); }
+#boton-tema {
+  min-width: 7.6rem;
+}
 
-dialog { margin: auto; padding: 0; border: 0; background: transparent; max-width: min(94vw, 1000px); color: #fff; }
-dialog::backdrop { background: rgba(0, 0, 0, .85); }
-dialog img { display: block; max-width: 100%; max-height: 78vh; margin: 0 auto; border-radius: 10px; }
-dialog button { background: rgba(255, 255, 255, .15); border-radius: 999px; padding: .35rem .9rem; }
+#imprimir {
+  min-width: 5.6rem;
+}
+
+.mini[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.thumb {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  cursor: zoom-in;
+}
+
+.thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform .35s ease;
+}
+
+.thumb:hover img {
+  transform: scale(1.03);
+}
+
+.vacio {
+  background: repeating-linear-gradient(135deg, transparent 0 10px, var(--line) 10px 11px), var(--bg);
+}
+
+dialog {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(94vw, 1000px);
+  color: #fff;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, .85);
+}
+
+dialog img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+dialog button {
+  background: rgba(255, 255, 255, .15);
+  border-radius: 999px;
+  padding: .35rem .9rem;
+}
 
 /* ---------- Idioma: cada <T> trae los dos textos y se ve el del idioma activo ---------- */
-html:not([data-lang="en"]) [lang="en"] { display: none; }
-html[data-lang="en"] [lang="es"] { display: none; }
+html:not([data-lang="en"]) [lang="en"] {
+  display: none;
+}
+
+html[data-lang="en"] [lang="es"] {
+  display: none;
+}
 
 /* ---------- Gotas ---------- */
-.gotas { display: block; width: 100%; height: 130px; margin-top: -1px; overflow: hidden; }
-.dp { transform-box: fill-box; transform-origin: top; animation: caer 1s cubic-bezier(.3, 1.3, .5, 1) both; animation-delay: var(--d); }
-@keyframes caer { from { transform: scaleY(.05); } }
+.gotas {
+  display: block;
+  width: 100%;
+  height: 130px;
+  margin-top: -1px;
+  overflow: hidden;
+}
+
+.dp {
+  transform-box: fill-box;
+  transform-origin: top;
+  animation: caer 1s cubic-bezier(.3, 1.3, .5, 1) both;
+  animation-delay: var(--d);
+}
+
+@keyframes caer {
+  from {
+    transform: scaleY(.05);
+  }
+}
 
 /* ---------- Cortina: un div fijo, fuera de pantalla por arriba. Con la clase "baja" desciende y tapa todo ---------- */
 #cortina {
-  position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
-  background: var(--hero); color: #fff; font: 600 2.4rem Fraunces, serif;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: var(--hero);
+  color: #fff;
+  font: 600 2.4rem Fraunces, serif;
   transform: translateY(calc(-100% - 150px));
   transition: transform .6s cubic-bezier(.65, 0, .35, 1);
   pointer-events: none;
 }
-#cortina.baja { transform: none; pointer-events: auto; }
-#cortina .gotas { position: absolute; left: 0; top: calc(100% - 1px); }
 
-nav a[aria-current="page"] { color: var(--accent); }
+#cortina.baja {
+  transform: none;
+  pointer-events: auto;
+}
 
-@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+#cortina .gotas {
+  position: absolute;
+  left: 0;
+  top: calc(100% - 1px);
+}
+
+nav a[aria-current="page"] {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* ---------- Imprimir: todas las páginas, sin cabecera ni adornos ---------- */
 @media print {
-  header, #cortina, .gotas, #dibujos { display: none !important; }
-  .pg[hidden] { display: block !important; }
-  #inicio > div { background: none !important; color: #000 !important; }
-  #inicio .boton { display: none; }
-  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8rem; }
+
+  header,
+  #cortina,
+  .gotas,
+  #dibujos {
+    display: none ;
+  }
+
+  .pg[hidden] {
+    display: block ;
+  }
+
+  #inicio>div {
+    background: none ;
+    color: #000 ;
+  }
+
+  #inicio .boton {
+    display: none;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: .8rem;
+  }
 }
