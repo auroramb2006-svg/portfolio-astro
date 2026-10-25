@@ -174,25 +174,81 @@ const logros = [
 
       <main>
         <!-- PÁGINA: Inicio -->
-        <section class="pg" id="inicio">
-          <div class="rounded-t-3xl px-8 py-14 text-white md:px-14 md:py-20" style="background: var(--hero)">
-            <div class="md:flex md:items-center md:justify-between md:gap-12">
-              <div class="max-w-2xl">
-                <h1 class="text-5xl leading-[1.05] font-semibold md:text-7xl">
-                  <T es={`Hola, soy ${primerNombre}.`} en={`Hi, I’m ${primerNombre}.`} />
-                </h1>
-                <p class="mt-6 text-lg md:text-xl"><T {...intro} /></p>
-                <a class="boton boton-claro mt-8" href="#proyectos"><T es="Ver proyectos" en="See projects" /></a>
-              </div>
-              <img
-                src={foto}
-                alt={`Foto de ${nombre}`}
-                class="mt-10 h-40 w-40 rounded-full border-4 border-white/50 object-cover md:mt-0 md:h-56 md:w-56"
-              />
-            </div>
-          </div>
-          <Gotas animar />
-        </section>
+     <!-- PÁGINA: Inicio -->
+<section class="pg" id="inicio">
+  <div class="relative overflow-hidden rounded-3xl px-6 py-12 text-white md:px-16 md:py-20 shadow-2xl transition-all duration-300" style="background: var(--hero)">
+    
+    <!-- Elementos decorativos sutiles de fondo -->
+    <div class="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-black/10 blur-3xl"></div>
+
+    <div class="relative z-10 md:flex md:items-center md:justify-between md:gap-12">
+      <!-- Texto principal -->
+      <div class="max-w-2xl">
+        <!-- Badge indicadora -->
+        <div class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1 text-xs font-medium tracking-wide text-white backdrop-blur-md border border-white/20 mb-6">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
+          </span>
+          <T es="Desarrolladora Web & Ilustradora" en="Web Developer & Illustrator" />
+        </div>
+
+        <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight md:text-6xl lg:text-7xl">
+          <T es={`Hola, soy ${primerNombre}.`} en={`Hi, I’m ${primerNombre}.`} />
+        </h1>
+
+        <p class="mt-6 text-base md:text-lg lg:text-xl font-normal leading-relaxed text-white/90">
+          <T {...intro} />
+        </p>
+
+        <!-- Botones de Acción -->
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a class="boton boton-claro shadow-lg hover:shadow-xl transition-all" href="#proyectos">
+            <T es="Ver proyectos" en="See projects" />
+          </a>
+          <a class="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/50" href="#contacto">
+            <T es="Contactar" en="Get in touch" /> →
+          </a>
+        </div>
+      </div>
+
+      <!-- Foto de Perfil con efectos y glow -->
+      <div class="mt-10 flex justify-center md:mt-0 shrink-0">
+        <div class="relative group">
+          <!-- Resplandor / Glow detrás de la imagen -->
+          <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-white/30 to-white/10 blur-xl opacity-70 group-hover:opacity-100 transition duration-500"></div>
+          
+          <img
+            src={foto}
+            alt={`Foto de ${nombre}`}
+            class="relative h-44 w-44 rounded-full border-4 border-white/60 object-cover shadow-2xl transition duration-500 group-hover:scale-105 md:h-60 md:w-60 lg:h-64 lg:w-64"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Métrica o puntos fuertes rápidos (Opcional) -->
+    <div class="relative z-10 mt-12 grid grid-cols-2 gap-4 border-t border-white/20 pt-8 sm:grid-cols-3">
+      <div>
+        <p class="text-2xl font-bold md:text-3xl">Frontend</p>
+        <p class="text-xs text-white/70 md:text-sm"><T es="HTML, CSS, JS, Astro" en="HTML, CSS, JS, Astro" /></p>
+      </div>
+      <div>
+        <p class="text-2xl font-bold md:text-3xl">Backend</p>
+        <p class="text-xs text-white/70 md:text-sm"><T es="PHP & MySQL" en="PHP & MySQL" /></p>
+      </div>
+      <div class="col-span-2 sm:col-span-1">
+        <p class="text-2xl font-bold md:text-3xl">Diseño</p>
+        <p class="text-xs text-white/70 md:text-sm"><T es="Ilustración & UI/UX" en="Illustration & UI/UX" /></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Mantener las Gotas animadas debajo -->
+  <Gotas animar />
+</section>
 
         <!-- PÁGINA: Proyectos -->
         <section id="proyectos" class="pg line scroll-mt-4 border-t py-24" hidden>
