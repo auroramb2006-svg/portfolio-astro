@@ -221,7 +221,8 @@ html[data-lang="en"] [lang="es"] {
   background: var(--hero);
   color: #fff;
   font: 600 2.4rem Fraunces, serif;
-  transform: translateY(calc(-100% - 150px));
+  /* sube también la altura de las gotas, para que no asomen en reposo */
+  transform: translateY(calc(-100% - max(130px, 13vw) - 20px));
   transition: transform .6s cubic-bezier(.65, 0, .35, 1);
   pointer-events: none;
 }
@@ -235,6 +236,9 @@ html[data-lang="en"] [lang="es"] {
   position: absolute;
   left: 0;
   top: calc(100% - 1px);
+  /* la cortina ocupa todo el ancho: la altura crece con él para que el SVG
+     (1000x130) no se recorte por abajo en pantallas anchas */
+  height: max(130px, 13vw);
 }
 
 nav a[aria-current="page"] {
