@@ -76,7 +76,7 @@ const proyectos = [
       en: "HTML, CSS, JavaScript, PHP, MySQL, Moodle",
     },
     demo: "https://laacademiasc.es",
-    codigo: "https://github.com/auroramb2006-svg/la-academia",
+    codigo: null,
   },
   {
     nombre: "Jolgorio",
@@ -97,10 +97,13 @@ const proyectos = [
     img: ruta("/img/servidor-casa.webp"),
     alt: "Portada de Servidor Casa",
     texto: {
-      es: "Proyecto de configuración y despliegue de servidor personal y entorno local.",
-      en: "Configuration and deployment project for a personal server and local environment.",
+      es: "Panel web propio para controlar el servidor de casa, montado con Docker Compose. Con login, permite encender equipos en remoto (Wake-on-LAN), apagarlos o reiniciarlos por SSH, ver el estado del servidor, gestionar los contenedores y subir archivos. Incluye AdGuard Home para bloquear anuncios en toda la red y Uptime Kuma para avisar si algo se cae.",
+      en: "My own web panel to control my home server, set up with Docker Compose. Behind a login, it can wake devices remotely (Wake-on-LAN), shut them down or restart them over SSH, show the server's status, manage containers and upload files. It also runs AdGuard Home to block ads across the whole network and Uptime Kuma to alert me if something goes down.",
     },
-    tecnologias: { es: "Linux, Docker, Redes", en: "Linux, Docker, Networks" },
+    tecnologias: {
+      es: "Node.js, PostgreSQL, Docker, Linux, SSH, AdGuard Home",
+      en: "Node.js, PostgreSQL, Docker, Linux, SSH, AdGuard Home",
+    },
     demo: null,
     codigo: "https://github.com/auroramb2006-svg/servidor-casa.git",
   },
